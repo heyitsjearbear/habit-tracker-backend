@@ -6,7 +6,7 @@ const cors = require('cors');
 require("dotenv").config();
 const app = express();
 const mongoString = process.env.DATABASE_URL;
-
+const PORT = process.env.PORT || 3000
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 database.on("error", (error) => {
@@ -35,6 +35,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api", routes);
 app.use(express.json());
-app.listen(3000, () => {
-  console.log(`Server started at ${3000}`);
+app.listen(PORT, () => {
+  console.log(`Server started at ${PORT}`);
 });
